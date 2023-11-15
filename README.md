@@ -11,4 +11,5 @@ or,
 ```
 python create_html.py --csv_data=<csv file> --column_txt=<txt file>
 ```
-   
+
+(Note: You may run without txt file.  In that case, it will get stats from all columns.)

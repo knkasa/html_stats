@@ -9,6 +9,7 @@ import numpy as np
 import os
 import pdb
 import sys
+from typing import List
 import sweetviz as sv
 
 # sweetviz==2.2.1 is confirmed to be working.

@@ -16,6 +16,7 @@ import sweetviz as sv
 # sweetviz==2.2.1 is confirmed to be working.
 
 class html_class:
+    __slots__ = ['csv_file', 'col_list']
     def __init__(self, csv_file:str, col_list:List[str]=None):
         self.csv_file = csv_file
         self.col_list = col_list

@@ -21,6 +21,7 @@ class html_class:
         self.csv_file = csv_file
         self.col_list = col_list
 
+    @conditional_decorator(condition=True)
     def get_html(self) -> None:
         '''Run sweetviz to create html file. '''
 

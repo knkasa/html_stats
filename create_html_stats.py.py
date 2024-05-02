@@ -10,6 +10,7 @@ import os
 import pdb
 import sys
 from dotenv import load_dotenv
+from loguru import logger
 from typing import List
 import sweetviz as sv
 
@@ -40,6 +41,16 @@ class html_class:
 	except Exception as e:
 	    raise Exception(e)
 
+class loguru_class():
+    def __init__(self,):
+	if not os.path.exitsts('log'):
+	    os.makedir('log')
+	logger.add(
+	    f"./log/monitoring_{datetime.now().strftime(%Y%m%d-%H%M%S')}.log",
+	    rotaion="1000MB",
+	    level="INFO", #"DEBUG"
+	    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8 
+
 def main():
 
     options, _ = getopt.getopt(sys.argv[1:], 'd:c:', ['csv_data=', 'column_txt='])
@@ -61,6 +72,15 @@ def main():
     if col_list is not None:
 	col_list = [item for item in col_list if item] # Remove empty strings.
 
+    encoding_options = ['Shift-JIS','UTF-8']
+    for encoding in encoding_options:
+	try:
+	    load_dotenv(encoding=encoding, verbose=True)
+	    logger.debug(f"The following encoding worked. {encoding}")
+	    break
+	except UnicodeDecodeError:
+	    raise Exception("Loading .env failed.  Try different encoding.")
+	
     html_creator = html_class(csv_file, col_list)
     html_creator.get_html()
 

@@ -10,6 +10,8 @@ import os
 import pdb
 import sys
 from dotenv import load_dotenv
+import yaml
+import time
 from loguru import logger
 from typing import List
 import sweetviz as sv
@@ -39,7 +41,19 @@ class html_class:
 		report = sv.analyze(df)
 	    report.show_html("stats.html")
 	except Exception as e:
+	    logger.exception(f"Error at get_html(): {e}")
 	    raise Exception(e)
+
+    @static_method
+    def conditional_decorator(condition):
+	def decorator(func):
+	    if condition:
+		return func
+	    else:
+		def wrapper(*args, **kwargs):
+		    return func(*args, **kwargs)
+		return wrapper if func else None
+	return decorator
 
 class loguru_class():
     def __init__(self,):
@@ -49,10 +63,15 @@ class loguru_class():
 	    f"./log/monitoring_{datetime.now().strftime(%Y%m%d-%H%M%S')}.log",
 	    rotaion="1000MB",
 	    level="INFO", #"DEBUG"
-	    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8 
+	    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name} | {message}"  # {level: <8} means put 8 spaces after the level text.
 
 def main():
 
+    loguru_engine = loguru_class()
+
+    with open('setting.yaml', 'r') as yml:
+	settings = yaml.save_load(yml)
+	
     options, _ = getopt.getopt(sys.argv[1:], 'd:c:', ['csv_data=', 'column_txt='])
 
     col_list = None
@@ -65,7 +84,7 @@ def main():
 		    col_list.append(line.strip())
 
     try:
-	print(f"csv file = {csv_file}")
+	logger.info(f"csv file = {csv_file}")
     except NameError as e:
 	raise Exception("No csv file found. Exiting...")
 
@@ -80,9 +99,11 @@ def main():
 	    break
 	except UnicodeDecodeError:
 	    raise Exception("Loading .env failed.  Try different encoding.")
-	
+
+    time1 = time.perf_counter()
     html_creator = html_class(csv_file, col_list)
     html_creator.get_html()
+    logger.info(f"Time elapsed: {int(time.perf_counter()-time1)}sec.")
 
 if __name__=="__main__":
     main()

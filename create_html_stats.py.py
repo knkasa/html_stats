@@ -16,6 +16,7 @@ from loguru import logger
 import getopt  # you could also use argparse library.
 from typing import List
 import sweetviz as sv
+import functools
 
 # sweetviz==2.2.1 is confirmed to be working.
 
@@ -25,6 +26,7 @@ class html_class:
         self.csv_file = csv_file
         self.col_list = col_list
 
+    @@functools.lru_cache()  
     @conditional_decorator(condition=True)
     def get_html(self) -> None:
         '''Run sweetviz to create html file. '''

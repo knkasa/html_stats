@@ -29,7 +29,18 @@ class html_class:
     @@functools.lru_cache()  
     @conditional_decorator(condition=True)
     def get_html(self) -> None:
-        '''Run sweetviz to create html file. '''
+        '''
+	Run sweetviz to create html file. 
+        Parameters:
+	a(int): explanation.
+        b(float): explanation.
+	Returns:
+        int: explanation.
+
+        Example:
+	>>> get_html(a,b)
+        12
+　　    '''
 
         try:
             try:

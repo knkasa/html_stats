@@ -26,6 +26,9 @@ class html_class:
         self.csv_file = csv_file
         self.col_list = col_list
 
+    def __str__(self):
+	return f"Attribute vars: {self.csv_file}, {self.col_list}
+
     @@functools.lru_cache()  
     @conditional_decorator(condition=True)
     def get_html(self) -> None:

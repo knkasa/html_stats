@@ -17,8 +17,10 @@ import getopt  # you could also use argparse library.
 from typing import List
 import sweetviz as sv
 import functools
+from diskcache import Cache
 
 # sweetviz==2.2.1 is confirmed to be working.
+cache = Cache('/tmp/expensive_cache')
 
 class html_class:
     __slots__ = ['csv_file', 'col_list']
@@ -29,7 +31,7 @@ class html_class:
     def __str__(self):
 	return f"Attribute vars: {self.csv_file}, {self.col_list}
 
-    @@functools.lru_cache()  
+    @functools.lru_cache()
     @conditional_decorator(condition=True)
     def get_html(self) -> None:
         '''

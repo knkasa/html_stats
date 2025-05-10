@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #======================================================
 # Run as follow:
 # python create_html.py -d <csv file> -c <txt file>

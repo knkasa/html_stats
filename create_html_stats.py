@@ -127,7 +127,7 @@ def main():
     time1 = time.perf_counter()
     html_creator = html_class(csv_file, col_list)
     html_creator.get_html()
-    logger.info(f"Time elapsed: {int(time.perf_counter()-time1)}sec.")
+    logger.info(f"Time elapsed: {time.perf_counter()-time1:.1f}sec.")
 
 if __name__=="__main__":
     main()

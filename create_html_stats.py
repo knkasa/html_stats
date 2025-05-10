@@ -20,11 +20,14 @@ from typing import List
 import sweetviz as sv
 import functools
 from diskcache import Cache
+from pydantic import BaseModel
 
 # sweetviz==2.2.1 is confirmed to be working.
 cache = Cache('/tmp/expensive_cache')
 
-class html_class:
+class html_class(BaseModel):
+    csv_file:str
+    col_list:List[str]
     __slots__ = ['csv_file', 'col_list']
     def __init__(self, csv_file:str, col_list:List[str]=None):
         self.csv_file = csv_file

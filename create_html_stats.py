@@ -86,6 +86,9 @@ class loguru_class():
 
 def main():
 
+    from pathlib import Path
+    system_path = Path('__file__').resolve().parent
+    
     loguru_engine = loguru_class()
 
     with open('setting.yaml', 'r') as yml:

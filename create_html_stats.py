@@ -29,7 +29,7 @@ class html_class(BaseModel):
     csv_file:str
     col_list:List[str]
     __slots__ = ['csv_file', 'col_list']
-    def __init__(self, csv_file:str, col_list:List[str]=None):
+    def __init__(self, csv_file:str, col_list:List[str]=None):   # use / and *   function(x, y, /, *, var1=xxx, var2=yyy)
         self.csv_file = csv_file
         self.col_list = col_list
 

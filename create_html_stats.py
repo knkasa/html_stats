@@ -84,7 +84,7 @@ class loguru_class():
 	if not os.path.exitsts('log'):
 	    os.makedir('log')
 	logger.add(
-	    f"./log/monitoring_{datetime.now().strftime(%Y%m%d-%H%M%S')}.log",
+	    f"./log/monitoring_{datetime.now().strftime(%Y%m%d-%H%M%S')}.log",  # you may replace this with "sys.stdout" and remove rotation=100MB
 	    rotaion="1000MB",
 	    level="INFO", #"DEBUG"
 	    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name} | {message}"  # {level: <8} means put 8 spaces after the level text.

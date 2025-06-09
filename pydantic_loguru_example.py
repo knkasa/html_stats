@@ -48,9 +48,9 @@ if __name__ == "__main__":
     bad_data = {"name": "john", "age": -5, "email": "invalid"}
     
     try:
-        user1 = process_user(good_data)
+        user1 = process_user(**good_data)  
         logger.debug(f"User details: {user1.model_dump()}")
         
-        user2 = process_user(bad_data)
+        user2 = process_user(**bad_data)
     except Exception as e:
         logger.critical(f"Application error: {e}")

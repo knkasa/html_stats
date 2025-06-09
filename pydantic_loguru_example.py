@@ -18,12 +18,14 @@ class User(BaseModel):
     email: str
     
     @field_validator('name')
+    @classmethod
     def name_must_contain_space(cls, v):
         if ' ' not in v:
             logger.warning(f"Name '{v}' doesn't contain a space - might not be full name")
         return v.title()
     
     @field_validator('age')
+    @classmethod
     def age_must_be_positive(cls, v):
         if v <= 0:
             logger.error(f"Invalid age: {v}")

@@ -38,7 +38,7 @@ class html_class(BaseModel):
 
     @functools.lru_cache()
     @conditional_decorator(condition=True)
-    def get_html(self) -> None:
+    def get_html(self) -> None:  # def func(a, b, *, c, d) ->  func(a, b, c=3, d=4)
         '''
 	Run sweetviz to create html file. 
         Parameters:

@@ -33,10 +33,10 @@ class html_class(BaseModel):
         self.csv_file = csv_file
         self.col_list = col_list
 
-    def __str__(self):
+    def __str__(self):  #print(html_class)
 	return f"Attribute vars: {self.csv_file}, {self.col_list}"
 
-    def __repr__(self):
+    def __repr__(self):  #repr(html_class)
         return f"Attribute vars: {self.csv_file}, {self.col_list}"
 
     @functools.lru_cache()

@@ -34,7 +34,10 @@ class html_class(BaseModel):
         self.col_list = col_list
 
     def __str__(self):
-	return f"Attribute vars: {self.csv_file}, {self.col_list}
+	return f"Attribute vars: {self.csv_file}, {self.col_list}"
+
+    def __repr__(self):
+        return f"Attribute vars: {self.csv_file}, {self.col_list}"
 
     @functools.lru_cache()
     @conditional_decorator(condition=True)

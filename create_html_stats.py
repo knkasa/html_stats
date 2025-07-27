@@ -103,7 +103,7 @@ def main():
     loguru_engine = loguru_class()
 
     with open('setting.yaml', 'r') as yml:
-	settings = yaml.save_load(yml)
+	settings = yaml.safe_load(yml)
 	
     options, _ = getopt.getopt(sys.argv[1:], 'd:c:', ['csv_data=', 'column_txt='])
 

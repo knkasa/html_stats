@@ -34,10 +34,31 @@ class html_class(BaseModel):
         self.col_list = col_list
 
     def __str__(self): 
-	return f"Attribute vars: {self.csv_file}, {self.col_list}"
+		return f"Attribute vars: {self.csv_file}, {self.col_list}"  # how to use: html=htlm_class()  -> "html" will return "Attribute vars ... "
 
     def __repr__(self): 
         return f"Attribute vars: {self.csv_file}, {self.col_list}"
+
+	def __len__(self):
+		return len(self.col_list)  # how to use: html=htlm_class()  -> len(html)
+
+	def __get_item__(self, index):
+		return self.col_list[index]  # hot to use: html=html_class() -> html[2]
+
+	def __set_item__(self, index, value):
+		return self.col_list[index] = value  # how to use: html=html_class()  -> html[2]=xxx
+
+	def __eq__(self, other):
+		return self.csv_file==other.xxxx   # how to use: html=html_class() -> html==other  #assuming other.xxxx exists
+
+	def __add__(self, other):
+		return self.csv_file + other.xxxx  # how to use: html=html_class() -> html+other   #assuming other.xxxx exists
+
+	def __call__(self):
+		return print("call function.")  # how to use: html=html_class() -> html()
+
+	def __contains__(self, yyy):
+		return yyy in self.col_list  # how to use: html=htlm_class()  -> yyy in html    #assuming yyy exists. 
 
     @functools.lru_cache()
     @conditional_decorator(condition=True)
@@ -57,16 +78,16 @@ class html_class(BaseModel):
 
         try:
             try:
-		df = pd.read_csv(self.csv_file, encoding='Shift-Jis')
+				df = pd.read_csv(self.csv_file, encoding='Shift-Jis')
 	    except UnicodeDecodeError:
-		df = pd.read_csv(self.csv_file, encoding='UTF-8')
+				df = pd.read_csv(self.csv_file, encoding='UTF-8')
 
 	    sv.config_parser.read_string("[General]\nuse_cjk_font=1")
 	    if self.col_list is not None:
-		report = sv.analyze(df[self.col_list])
+			report = sv.analyze(df[self.col_list])
 	    else:
-		report = sv.analyze(df)
-	    report.show_html("stats.html")
+			report = sv.analyze(df)
+	    	report.show_html("stats.html")
 	except Exception as e:
 	    logger.exception(f"Error at get_html(): {e}")
 	    raise Exception(e)
@@ -91,7 +112,7 @@ class loguru_class():
 	    rotation="1000MB",
 	    level="INFO", #"DEBUG"
 	    format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name} | {message}"  # {level: <8} means put 8 spaces after the level text.
-	)
+		)
 def main():
 
     from pathlib import Path
@@ -140,4 +161,5 @@ def main():
 
 if __name__=="__main__":
     main()
+
 

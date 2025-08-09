@@ -54,8 +54,8 @@ class html_class(BaseModel):
 	def __add__(self, other):
 		return self.csv_file + other.xxxx  # how to use: html=html_class() -> html+other   #assuming other.xxxx exists
 
-	def __call__(self):
-		return print("call function.")  # how to use: html=html_class() -> html()
+	def __call__(self, yyy):
+		return self.csv_files*yyy  # how to use: html=html_class() -> html(yyy)
 
 	def __contains__(self, yyy):
 		return yyy in self.col_list  # how to use: html=htlm_class()  -> yyy in html    #assuming yyy exists. 
@@ -161,5 +161,6 @@ def main():
 
 if __name__=="__main__":
     main()
+
 
 

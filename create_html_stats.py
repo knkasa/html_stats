@@ -166,6 +166,36 @@ def main():
 if __name__=="__main__":
     main()
 
+# other examples. Assign attribute.
+import attr
+@attr.s
+class Developer:
+    name = attr.ib()
+    language = attr.ib(default='Python')
 
+dev = Developer('Alex')
+print(dev)  # Developer(name='Alex', language='Python')
 
+# Impose condition to inputs.
+import deal
+@deal.pre(lambda x: x >= 0)
+@deal.post(lambda result: result % 2 == 0)
+def double(x: int) -> int:
+    return x * 2
+
+# Raises a type error instantly
+from beartype import beartype
+@beartype
+def divide(a: int, b: int) -> float:
+    return a / b
+
+divide(10, "5")  # this will raise type error
+
+# Alternative to try except block.
+from returns.result import Result, Success, Failure
+def fetch_user(user_id: int) -> Result[str, Exception]:
+    if user_id == 1:
+        return Success("Jane Doe")
+    else:
+        return Failure(ValueError("User not found"))
 

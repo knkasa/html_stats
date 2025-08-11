@@ -43,7 +43,7 @@ class html_class(BaseModel):
 		return len(self.col_list)  # how to use: html=htlm_class()  -> len(html)
 
 	def __get_item__(self, index):
-		return self.col_list[index]  # hot to use: html=html_class() -> html[2]
+		return self.col_list[index]  # how to use: html=html_class() -> html[2]
 
 	def __set_item__(self, index, value):
 		return self.col_list[index] = value  # how to use: html=html_class()  -> html[2]=xxx
@@ -60,6 +60,10 @@ class html_class(BaseModel):
 	def __contains__(self, yyy):
 		return yyy in self.col_list  # how to use: html=htlm_class()  -> yyy in html    #assuming yyy exists. 
 
+	@property
+	def csv_file(self):
+		return self.csv_file  # read only variable.
+	
     @functools.lru_cache()
     @conditional_decorator(condition=True)
     def get_html(self) -> None:  # def func(a, b, *, c, d) ->  func(a, b, c=3, d=4)
@@ -161,6 +165,7 @@ def main():
 
 if __name__=="__main__":
     main()
+
 
 
 

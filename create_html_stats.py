@@ -21,6 +21,8 @@ import sweetviz as sv
 import functools
 from diskcache import Cache
 from pydantic import BaseModel
+import hydra
+from omegaconf import DictConfig, OmegaConf
 
 # sweetviz==2.2.1 is confirmed to be working.
 cache = Cache('/tmp/expensive_cache')
@@ -29,6 +31,9 @@ class html_class(BaseModel):
     csv_file:str
     col_list:List[str]
     __slots__ = ['csv_file', 'col_list']
+
+    # use hydra to overwrite config.yaml parameters from command line.   python my_app.py database.port=1234
+	@hydra.main(config_path=".", config_name="config", version_base=None) 
     def __init__(self, csv_file:str, col_list:List[str]=None):   # use / and *   function(x, y, /, *, var1=xxx, var2=yyy)
         self.csv_file = csv_file
         self.col_list = col_list
@@ -198,5 +203,6 @@ def fetch_user(user_id: int) -> Result[str, Exception]:
         return Success("Jane Doe")
     else:
         return Failure(ValueError("User not found"))
+
 
 

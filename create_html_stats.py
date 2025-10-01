@@ -20,7 +20,7 @@ from typing import List
 import sweetviz as sv
 import functools
 from diskcache import Cache
-from pydantic import BaseModel # use pandella for pandas
+from pydantic import BaseModel # use pandera for pandas
 import hydra
 from omegaconf import DictConfig, OmegaConf
 from icontract import require, ensure
@@ -206,6 +206,7 @@ def fetch_user(user_id: int) -> Result[str, Exception]:
         return Success("Jane Doe")
     else:
         return Failure(ValueError("User not found"))
+
 
 
 

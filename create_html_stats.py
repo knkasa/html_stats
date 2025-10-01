@@ -25,6 +25,9 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 from icontract import require, ensure
 
+# python advance example 
+#https://github.com/faif/python-patterns?source=post_page-----3334af39e948---------------------------------------
+
 # sweetviz==2.2.1 is confirmed to be working.
 cache = Cache('/tmp/expensive_cache')
 
@@ -206,6 +209,7 @@ def fetch_user(user_id: int) -> Result[str, Exception]:
         return Success("Jane Doe")
     else:
         return Failure(ValueError("User not found"))
+
 
 
 

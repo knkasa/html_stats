@@ -11,7 +11,7 @@ import numpy as np
 import os
 import pdb
 import sys
-from dotenv import load_dotenv
+from dotenv import load_dotenv #you can load.env file with pydantic.
 import yaml
 import time
 from loguru import logger
@@ -209,6 +209,7 @@ def fetch_user(user_id: int) -> Result[str, Exception]:
         return Success("Jane Doe")
     else:
         return Failure(ValueError("User not found"))
+
 
 
 

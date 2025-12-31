@@ -1,0 +1,70 @@
+# ----------------------------------
+# Application settings
+# ----------------------------------
+[app]
+name = "sales_forecast"
+version = "1.0.0"
+debug = true
+log_level = "INFO"
+
+# ----------------------------------
+# Paths
+# ----------------------------------
+[paths]
+data_dir = "data/"
+model_dir = "models/"
+log_dir = "logs/"
+
+# ----------------------------------
+# Database configuration
+# ----------------------------------
+[database]
+type = "postgres"
+host = "localhost"
+port = 5432
+username = "user"
+password = "secret"
+database = "sales_db"
+
+# ----------------------------------
+# AWS configuration
+# ----------------------------------
+[aws]
+region = "ap-northeast-1"
+s3_bucket = "my-ml-bucket"
+
+[aws.sagemaker]
+instance_type = "ml.m5.large"
+role_arn = "arn:aws:iam::123456789012:role/SageMakerRole"
+
+# ----------------------------------
+# Model parameters
+# ----------------------------------
+[model]
+type = "lstm"
+sequence_length = 10
+num_features = 6
+learning_rate = 0.001
+batch_size = 64
+epochs = 50
+
+# ----------------------------------
+# Feature flags
+# ----------------------------------
+[features]
+use_pca = true
+pca_components = 5
+use_attention = false
+
+# ----------------------------------
+# List and nested tables
+# ----------------------------------
+[[notifications]]
+type = "email"
+enabled = true
+recipients = ["admin@example.com", "ops@example.com"]
+
+[[notifications]]
+type = "slack"
+enabled = false
+webhook_url = "https://hooks.slack.com/services/XXX/YYY/ZZZ"

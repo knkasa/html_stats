@@ -13,7 +13,7 @@ class myClass():
                 tries = 0
                 while tries < max_tries:
                     try:
-                        retrn func(*args, **kwargs)
+                        return func(*args, **kwargs)
                     except exceptions as e:
                         tries += 1
                         if tries==max_tries:
@@ -37,5 +37,6 @@ class myClass():
             res_list.append(res)
         results=ray.get(res_list)
         ray.shutdown()
+
 
 

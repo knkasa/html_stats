@@ -131,7 +131,7 @@ class loguru_class():
 def main():
 
     from pathlib import Path
-    system_path = Path('__file__').resolve().parent
+    system_path = Path(__file__).resolve().parent
 
     from types import SimpleNamespace
     config = SimpleNamespace(host='localhost', port=8080)  # or use enum

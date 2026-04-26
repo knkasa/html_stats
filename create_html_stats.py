@@ -24,6 +24,7 @@ from pydantic import BaseModel # use pandera for pandas for valudation.
 import hydra
 from omegaconf import DictConfig, OmegaConf
 from icontract import require, ensure
+import deal 
 
 # python advance example 
 #https://github.com/faif/python-patterns?source=post_page-----3334af39e948---------------------------------------
@@ -74,7 +75,12 @@ class html_class(BaseModel):
 	@property
 	def csv_file(self):
 		return self.csv_file  # read only variable.
-	
+
+    @deal.pre(lambda x: x > 0)
+    @deal.post(lambda result: result > 0)
+    def sqrt(x):
+        return x ** 0.5
+
     @functools.lru_cache()
     @conditional_decorator(condition=True)
     def get_html(self) -> None:  # def func(a, b, *, c, d) ->  func(a, b, c=3, d=4)

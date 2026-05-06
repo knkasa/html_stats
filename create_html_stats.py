@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #Also, try dabl
+# logfire: like loguru for LLM.
 #======================================================
 # Run as follow:
 # python create_html.py -d <csv file> -c <txt file>

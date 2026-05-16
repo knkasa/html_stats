@@ -27,6 +27,9 @@ from omegaconf import DictConfig, OmegaConf
 from icontract import require, ensure
 import deal 
 
+import better_exceptions
+better_exceptions.hook()
+
 # python advance example 
 #https://github.com/faif/python-patterns?source=post_page-----3334af39e948---------------------------------------
 
